@@ -12,7 +12,7 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import './userSignUp.scss';
 
-const UserSignUp = () => {
+const UserSignUp = (props) => {
     const [inputs, handleInputChange] = useState({firstName: '', lastName: '', email: '', password: '', repeatedPassword: ''});
     const [showPassword, setVisibility] = useState(false);
     const [isValidForm, updateForm] = useState(false);
@@ -120,7 +120,7 @@ const UserSignUp = () => {
                         disabled={!isValidForm}
                         variant="contained"
                         className="signup-button"
-                        onClick={}
+                        onClick={() => props.sendEmail(inputs.email)}
                     >
                         Complete SignUp
                     </Button>

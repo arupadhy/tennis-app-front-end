@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import './landing-page.scss';
 import { Typography, Button } from '@material-ui/core';
 import UserSignUp from '../UserSignUp';
+import SendEmailservice from "../services/send-email-service";
+
+const sendEmail = (userEmail) => {
+    SendEmailservice.send(userEmail);
+}
 
 const LandingPage = ()  => {
     const [isSignUp, setSignUpActive] = useState(false);
@@ -32,7 +37,7 @@ const LandingPage = ()  => {
                 </div>
             </div>
             <div className="landing-page-content">
-                {isSignUp ? <UserSignUp/> : null}
+                {isSignUp ? <UserSignUp sendEmail={sendEmail}/> : null}
             </div>
         </div>
     )
