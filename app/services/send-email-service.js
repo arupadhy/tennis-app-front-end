@@ -1,0 +1,6 @@
+class SendEmailservice {
+
+    send(email) {
+        
+    }
+}

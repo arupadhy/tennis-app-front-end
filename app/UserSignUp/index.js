@@ -15,14 +15,21 @@ import './userSignUp.scss';
 const UserSignUp = () => {
     const [inputs, handleInputChange] = useState({firstName: '', lastName: '', email: '', password: '', repeatedPassword: ''});
     const [showPassword, setVisibility] = useState(false);
+    const [isValidForm, updateForm] = useState(false);
 
-    const handleChange = (label) => (e) => handleInputChange({...inputs, [label]: e.target.value});
+    const handleChange = (label) => (e) => {
+        const newInputs = {...inputs, [label]: e.target.value};
+        handleInputChange(newInputs);
+        isValid(newInputs);
+    };
     const setPasswordVisibility =  (e) => setVisibility(!showPassword);
 
-    const isValid = () => {
-        inputs.password === inputs.repeatedPassword && inputs.password.trim().length > 0 &&
+    const isValid = (inputs) => {
+        const isValid = inputs.password === inputs.repeatedPassword && inputs.password.trim().length > 0 &&
             inputs.firstName.trim().length > 0 && inputs.lastName.trim().length > 0 &&
-            inputs.email.trim().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) !== undefined
+            inputs.email.trim().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) !== null;
+        console.log(`Evaluated isValid to ${isValid}`);
+        updateForm(isValid);
     }
 
     return (
@@ -107,11 +114,13 @@ const UserSignUp = () => {
                             value={inputs.repeatedPassword}
                         />
                     </FormControl>
+
                     <Button
                         color="primary"
-                        disabled={!isValid()}
+                        disabled={!isValidForm}
                         variant="contained"
                         className="signup-button"
+                        onClick={}
                     >
                         Complete SignUp
                     </Button>
