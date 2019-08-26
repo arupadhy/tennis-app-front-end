@@ -120,7 +120,7 @@ const UserSignUp = (props) => {
                         disabled={!isValidForm}
                         variant="contained"
                         className="signup-button"
-                        onClick={() => props.sendEmail(inputs.email)}
+                        onClick={() => props.sendEmail(inputs)}
                     >
                         Complete SignUp
                     </Button>

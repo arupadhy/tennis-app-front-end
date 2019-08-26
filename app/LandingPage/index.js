@@ -4,8 +4,8 @@ import { Typography, Button } from '@material-ui/core';
 import UserSignUp from '../UserSignUp';
 import SendEmailservice from "../services/send-email-service";
 
-const sendEmail = (userEmail) => {
-    SendEmailservice.send(userEmail);
+const sendEmail = (newUser) => {
+    SendEmailservice.send(newUser);
 }
 
 const LandingPage = ()  => {
